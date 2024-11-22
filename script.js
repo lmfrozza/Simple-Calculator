@@ -1,5 +1,5 @@
 //FUNCTIONS 
-
+let LMenu = false
 let result = 0
 let operation = "+"
 function InsertNumber(num) {
@@ -47,15 +47,19 @@ function Ope(btn){
         if (floatNumber >0){
             if(operation == "+"){
                 screen.textContent = result + floatNumber
+                addRowToLog(result, floatNumber, "+", result + floatNumber)
             }
             if(operation == "-"){
                 screen.textContent = result - floatNumber
+                addRowToLog(result, floatNumber, "-", result - floatNumber)
             }
             if(operation == "/"){
                 screen.textContent = result / floatNumber
+                addRowToLog(result, floatNumber, "/", result / floatNumber)
             }
             if(operation == "x"){
                 screen.textContent = result * floatNumber
+                addRowToLog(result, floatNumber, "x", result * floatNumber)
             }
         }else{
             screen.textContent = result
@@ -100,6 +104,44 @@ function Ope(btn){
         console.log("New Value for result: ", result);
     }
 }
+
+function Activate_Logs(){
+    logs_menu.classList.add("active");
+}
+function Deactivate_Logs(){
+    logs_menu.classList.remove("active");
+}
+
+function addRowToLog(n1,n2,ope,log_result) {
+    const newRow = document.createElement('tr');
+    
+    const N1Cell = document.createElement('td');
+    N1Cell.textContent = n1;
+    newRow.appendChild(N1Cell);
+
+    const operationCell = document.createElement('td');
+    operationCell.textContent = ope;
+    newRow.appendChild(operationCell);
+
+    const N2Cell = document.createElement('td');
+    N2Cell.textContent = n2;
+    newRow.appendChild(N2Cell);
+
+    const ResultCell = document.createElement('td');
+    ResultCell.textContent = log_result;
+    newRow.appendChild(ResultCell);
+
+
+
+    const tableBody = document.getElementById('tableBody');
+    tableBody.appendChild(newRow);
+}
+
+function removeAllRows() {
+    const tableBody = document.getElementById('tableBody');
+    tableBody.innerHTML = ''; // Limpa o conteúdo do tbody
+}
+
 //LISTENERS
 const NumBtns = document.getElementsByClassName("Num-btn"); 
 for (let i = 0; i < NumBtns.length; i++) {
@@ -109,6 +151,7 @@ for (let i = 0; i < NumBtns.length; i++) {
 }
 
 const CleanButton = document.getElementById('Clean-Btn').addEventListener('click',Clean_Screen)
+const CleanLogs = document.getElementById('Clean-Btn').addEventListener('click',removeAllRows)
 
 const ChangeSignal_Btn = document.getElementById("ChangeValue");
 ChangeSignal_Btn.addEventListener('click',ChangeSignal);
@@ -122,3 +165,25 @@ for (let c = 0; c < OpeBtns.length; c++){
         Ope(OpeBtns[c].textContent)
     });
 }
+
+// LOGS MENU
+
+const logs_menu = document.getElementById('Logs');
+const logs_btn = document.getElementsByClassName("Log-btn");
+
+// Itera sobre todos os botões com a classe "Log-btn"
+for (let i = 0; i < logs_btn.length; i++) {
+    logs_btn[i].addEventListener('click', () => {
+        if(LMenu == false){
+            Activate_Logs();
+            LMenu = true;
+        }else{
+            Deactivate_Logs();
+            LMenu = false;
+        }
+    });
+}
+
+
+
+
