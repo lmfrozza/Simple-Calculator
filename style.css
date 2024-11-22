@@ -4,6 +4,8 @@ body {
     align-items: center;
     height: 100vh; 
     margin: 0; 
+    background-color: #f4f4f4; /* Para dar contraste com os elementos */
+    gap: 20px; /* Espaçamento entre calculadora e nav */
 }
 
 .wrapper {
@@ -18,6 +20,9 @@ body {
     width: 300px;
     max-width: 100%;
     min-height: 480px;    
+    justify-content: center;
+    position: relative;
+    height: fit-content;
 }
 
 .wrapper h2 {
@@ -52,4 +57,63 @@ body {
     height: 60px; 
     margin: 4px;
     border-radius: 3px;
+}
+nav{
+    border: 1px solid #000;
+    padding: 10px;
+    background-color: transparent;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    height: fit-content; 
+    position: absolute; 
+    top: 25%; 
+    right: 0;
+    transform: translateY(-50%);
+    visibility: hidden; 
+    user-select: none;
+    transition: .5s;
+}
+nav.active {
+    background-color: #fff;
+    transform: translateY(-50%); /* Ajusta para centralização vertical */
+    visibility: visible;
+    user-select: all;
+    right: 10%;
+}
+
+nav table {
+    border-collapse: collapse;
+    width: 100%;
+    text-align: left;
+}
+
+nav th, nav td {
+    border: 1px solid #000;
+    padding: 5px;
+    text-align: center;
+}
+
+nav th {
+    background-color: #f0f0f0;
+    text-align: center;
+}
+
+.Log-btn{
+    position: absolute;
+    background-color: #f4f4f4;
+    top: 3%;
+    right: 10%;
+    height: 50px;
+    width: 100px;
+    border-radius: 20px;
+    transition: .4s;
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+.Log-btn:hover{
+    background-color: black;
+    cursor: pointer;
+    color: #fff;
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.5);
+    
 }
